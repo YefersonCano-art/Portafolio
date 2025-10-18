@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@plugin "@midudev/tailwind-animations";
+
+@theme {
+  /* ☀️ TEMA CLARO (Light Mode) - Colores por defecto */
+
+  /* 🎨 COLORES BASE */
+  --color-background: hsl(0 0% 100%); /* Fondo blanco */
+  --color-foreground: hsl(234 8% 12%); /* Texto oscuro */
+
+  /* 📇 CARDS (tarjetas) */
+  --color-card: hsl(0 0% 100%); /* Fondo blanco */
+  --color-card-foreground: hsl(234 8% 12%); /* Texto oscuro */
+
+  /* 🔘 BOTONES PRIMARIOS */
+  --color-primary: hsl(234 8% 12%); /* Fondo oscuro */
+  --color-primary-foreground: hsl(42 30% 97%); /* Texto claro */
+
+  /* 🔘 BOTONES SECUNDARIOS */
+  --color-secondary: hsl(234 5% 95%); /* Fondo gris claro */
+  --color-secondary-foreground: hsl(234 8% 12%); /* Texto oscuro */
+
+  /* 🎯 ELEMENTOS DESTACADOS */
+  --color-accent: hsl(234 5% 95%); /* Fondo gris claro */
+  --color-accent-foreground: hsl(234 8% 12%); /* Texto oscuro */
+
+  /* 🔇 ELEMENTOS APAGADOS/DESHABILITADOS */
+  --color-muted: hsl(234 5% 95%); /* Fondo gris claro */
+  --color-muted-foreground: hsl(234 6% 45%); /* Texto gris medio */
+
+  /* 🚨 BOTONES DESTRUCTIVOS (eliminar, cancelar) */
+  --color-destructive: hsl(0 84% 60%); /* Color rojo brillante */
+  --color-destructive-foreground: hsl(0 0% 100%); /* Texto blanco */
+
+  /* 📦 OTROS */
+  --color-popover: hsl(0 0% 100%); /* Fondo blanco */
+  --color-popover-foreground: hsl(234 8% 12%); /* Texto oscuro */
+  --color-border: hsl(234 5% 90%); /* Borde gris claro */
+  --color-input: hsl(234 5% 95%); /* Fondo input gris claro */
+  --color-ring: hsl(234 8% 12%); /* Anillo de foco oscuro */
+}
+
+/* 🌙 TEMA OSCURO (Dark Mode) - Se aplica cuando el elemento tiene clase .dark */
+.dark {
+  /* 🎨 COLORES BASE */
+  --color-background: hsl(234 12% 4.2%); /* Fondo principal de la página */
+  --color-foreground: hsl(42 30% 97%); /* Color del texto principal */
+
+  /* 📇 CARDS (tarjetas) */
+  --color-card: hsl(234 12% 4.2%); /* Fondo de las tarjetas */
+  --color-card-foreground: hsl(42 30% 97%); /* Texto dentro de las tarjetas */
+
+  /* 🔘 BOTONES PRIMARIOS */
+  --color-primary: hsl(42 30% 97%); /* Fondo del botón principal */
+  --color-primary-foreground: hsl(234 8% 12%); /* Texto del botón principal */
+
+  /* 🔘 BOTONES SECUNDARIOS */
+  --color-secondary: hsl(234 5% 16%); /* Fondo del botón secundario */
+  --color-secondary-foreground: hsl(
+    42 30% 97%
+  ); /* Texto del botón secundario */
+
+  /* 🎯 ELEMENTOS DESTACADOS */
+  --color-accent: hsl(234 5% 16%); /* Color de acento/hover */
+  --color-accent-foreground: hsl(
+    42 30% 97%
+  ); /* Texto en elementos con acento */
+
+  /* 🔇 ELEMENTOS APAGADOS/DESHABILITADOS */
+  --color-muted: hsl(234 5% 16%); /* Fondo de elementos menos importantes */
+  --color-muted-foreground: hsl(234 6% 65%); /* Texto grisáceo/secundario */
+
+  /* 🚨 BOTONES DESTRUCTIVOS (eliminar, cancelar) */
+  --color-destructive: hsl(
+    0 62.8% 30.6%
+  ); /* Color rojo para acciones peligrosas */
+  --color-destructive-foreground: hsl(
+    42 30% 97%
+  ); /* Texto en botones destructivos */
+
+  /* 📦 OTROS */
+  --color-popover: hsl(234 12% 4.2%); /* Menús flotantes/tooltips */
+  --color-popover-foreground: hsl(42 30% 97%); /* Texto en popovers */
+  --color-border: hsl(234 5% 16%); /* Color de bordes */
+  --color-input: hsl(234 5% 16%); /* Fondo de inputs */
+  --color-ring: hsl(234 6% 84%); /* Anillo de foco (accesibilidad) */
+}
+
+/* 🎨 ANIMACIONES PERSONALIZADAS */
+
+/* Animación de gradiente que va y viene - derecha a izquierda y viceversa */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 30s ease infinite;
+}

@@ -1,0 +1,66 @@
+---
+
+---
+
+<header
+  class="fixed flex items-center justify-center z-50 w-full bg-transparent transition-all duration-300"
+>
+  <div class="container flex h-20 items-center justify-between px-4">
+    <span class="text-2xl text-muted-foreground font-extrabold">YC</span>
+
+    <div class="flex items-center gap-x-10">
+      <nav class="flex flex-row space-x-6">
+        <a
+          class="relative text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+          href="/"
+          >Home <span
+            class="absolute bottom-0 left-0 h-[2px] w-full bg-primary"
+            style="opacity: 1;"></span></a
+        >
+        <a
+          class="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+          href="#">About</a
+        >
+        <a
+          class="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+          href="#">Contact</a
+        >
+      </nav>
+
+      <!-- 🌓 Toggle Dark Mode -->
+    </div>
+    <label class="flex items-center gap-2 cursor-pointer">
+      <input type="checkbox" id="theme-toggle" class="sr-only peer" />
+      <div
+        class="relative w-9 h-5 bg-foreground peer-focus:outline-none peer-focus:ring-ring rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"
+      >
+      </div>
+    </label>
+  </div>
+</header>
+
+<script>
+  const isDark = true; // Valor predeterminado del tema oscuro
+
+  function applyTheme(isDark: boolean) {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }
+
+  applyTheme(isDark);
+
+  const checkbox = document.getElementById("theme-toggle") as HTMLInputElement;
+  if (checkbox) {
+    checkbox.checked = isDark;
+
+    // Evento para cambiar el tema
+    checkbox.addEventListener("change", (e) => {
+      applyTheme((e.target as HTMLInputElement).checked);
+    });
+  }
+</script>
