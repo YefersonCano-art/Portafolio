@@ -1,0 +1,138 @@
+---
+
+---
+
+<section
+  id="about"
+  class="flex min-h-screen w-full items-center justify-center py-4 mb-[-200px]"
+>
+  <div class="container mx-auto px-4">
+    <div
+      class="grid items-center gap-8 lg:grid-cols-2 lg:gap-1 max-w-6xl m-auto"
+    >
+      <div class="relative flex items-center justify-center">
+        <div class="blob-container">
+          <img
+            src="../../public/perfil.png"
+            alt="Perfil"
+            class="profile-image"
+          />
+        </div>
+      </div>
+      <div>
+        <h2 class="text-3xl font-medium tracking-tight sm:text-4xl mb-4">
+          Sobre Mí
+        </h2>
+        <p class="text-lg text-muted-foreground">
+          Desarrollador Frontend con formación autodidacta y enfoque en la
+          creación de interfaces funcionales, accesibles y orientadas a la
+          experiencia del usuario. Me apasiona transformar ideas en soluciones
+          digitales eficientes, manteniéndome en constante evolución a través
+          del aprendizaje continuo y las buenas prácticas de desarrollo.
+        </p>
+        <p class="mt-4 text-lg text-muted-foreground">
+          Cuento con habilidades para el trabajo en equipo, comunicación
+          efectiva y resolución de problemas, siempre con una actitud proactiva
+          y orientada a aportar valor en cada proyecto.
+        </p>
+        <a
+          href="https://drive.google.com/file/d/128UmJBWd-gFSn50CLvQxwm47S8SJvAGL/view"
+          rel="noopener noreferrer"
+          target="_blank"
+          aria-label="CV Yeferson Cano"
+          class="mt-6 justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 inline-flex items-center gap-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-download h-4 w-4"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" x2="12" y1="15" y2="3"></line>
+          </svg>
+          Descargar currículum
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .blob-container {
+    position: relative;
+
+    width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile-image {
+    position: relative;
+
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    z-index: 2;
+    animation: morph 15s ease-in-out infinite;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes morph {
+    0%,
+    100% {
+      border-radius: 60% 50% 40% 70% / 60% 40% 70% 50%;
+    }
+    25% {
+      border-radius: 40% 60% 70% 50% / 50% 60% 50% 50%;
+    }
+    50% {
+      border-radius: 50% 50% 40% 70% / 40% 50% 50% 70%;
+    }
+    75% {
+      border-radius: 70% 40% 50% 50% / 60% 70% 40% 50%;
+    }
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blob-container {
+      width: 250px;
+      height: 250px;
+    }
+
+    .profile-image {
+      width: 230px;
+      height: 230px;
+    }
+  }
+</style>
