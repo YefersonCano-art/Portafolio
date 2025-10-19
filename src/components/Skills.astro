@@ -1,0 +1,143 @@
+---
+import CardSkill from "./CardSkill.astro";
+import {
+  frontendSkills,
+  backendSkills,
+  herramientas,
+  tabButtons,
+} from "../data/skills";
+---
+
+<section
+  id="skills"
+  class="flex min-h-screen w-full items-start py-4 mb-[-200px]"
+>
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl m-auto">
+      <h2
+        class="text-3xl font-medium tracking-tight sm:text-4xl mb-8 text-center"
+      >
+        Habilidades
+      </h2>
+
+      <!-- Botones de navegación -->
+      <div class="flex justify-center gap-4 mb-8 flex-wrap">
+        <div class="w-full">
+          <div class="flex justify-center p-6">
+            {
+              tabButtons.map((tab) => (
+                <button
+                  class={`tab-button ${tab === "frontend" ? "active" : ""} flex items-center justify-center whitespace-nowrap text-muted-foreground  text-sm font-medium transition-all  border border-muted bg-background hover:bg-accent hover:text-accent-foreground h-10 px-10 py-6 capitalize cursor-pointer relative   `}
+                  data-tab={tab}
+                >
+                  {tab}
+                </button>
+              ))
+            }
+          </div>
+
+          <!-- Contenido de las tabs -->
+          <div class="tab-content">
+            <!-- Frontend Panel -->
+            <div class="tab-panel active" id="frontend">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {frontendSkills.map((skill) => <CardSkill skill={skill} />)}
+              </div>
+            </div>
+
+            <!-- Backend Panel -->
+            <div class="tab-panel" id="backend">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {backendSkills.map((skill) => <CardSkill skill={skill} />)}
+              </div>
+            </div>
+
+            <!-- Herramientas Panel -->
+            <div class="tab-panel" id="herramientas">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {herramientas.map((skill) => <CardSkill skill={skill} />)}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".tab-button");
+      const panels = document.querySelectorAll(".tab-panel");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetTab = button.getAttribute("data-tab");
+          if (!targetTab) return;
+
+          // Remover clase active de todos los botones y paneles
+          buttons.forEach((btn) => btn.classList.remove("active"));
+          panels.forEach((panel) => panel.classList.remove("active"));
+
+          // Agregar clase active al botón clickeado y su panel
+          button.classList.add("active");
+          const targetPanel = document.getElementById(targetTab);
+          if (targetPanel) {
+            targetPanel.classList.add("active");
+          }
+        });
+      });
+    });
+  </script>
+
+  <style>
+    .tab-button {
+      overflow: visible;
+    }
+
+    .tab-button::after {
+      content: "";
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-ring);
+      z-index: 10;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease-out;
+    }
+
+    .tab-button.active {
+      color: hsl(var(--primary));
+    }
+
+    .tab-button.active::after {
+      transform: scaleX(1);
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .skill-card {
+      cursor: default;
+    }
+  </style>
+</section>
