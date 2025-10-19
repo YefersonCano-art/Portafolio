@@ -3,7 +3,8 @@
 ---
 
 <header
-  class="fixed flex items-center justify-center z-50 w-full bg-transparent transition-all duration-300"
+  id="main-header"
+  class="fixed flex items-center justify-center z-50 w-full"
 >
   <div class="container flex h-20 items-center justify-between px-4">
     <a href="/Portafolio" class="text-2xl text-muted-foreground font-extrabold"
@@ -41,6 +42,42 @@
   </div>
 </header>
 
+<style>
+  /* 🎨 Header - Estado inicial */
+  #main-header {
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    box-shadow: none;
+    transition:
+      background-color 0.3s ease,
+      backdrop-filter 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  /* 🎨 Estado con scroll - Efectos comunes */
+  #main-header.scrolled {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+
+  /* ☀️ Modo claro (por defecto) */
+  #main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  /* 🌙 Modo oscuro - Mayor especificidad */
+  html.dark #main-header.scrolled {
+    background-color: rgba(10, 10, 15, 0.3) !important;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+  }
+</style>
+
 <script>
   const isDark = true; // Valor predeterminado del tema oscuro
 
@@ -68,6 +105,27 @@
 
   // 🎯 Smooth Scroll con Lenis
   document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("main-header");
+
+    // ✨ Efecto del header al hacer scroll (versión simple)
+    if (header) {
+      const handleScroll = () => {
+        const scrolled = window.scrollY > 200;
+
+        if (scrolled) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      };
+
+      // Escuchar el scroll
+      window.addEventListener("scroll", handleScroll, { passive: true });
+
+      // Ejecutar al cargar para estado inicial
+      handleScroll();
+    }
+
     const navLinks = document.querySelectorAll('header nav a[href^="#"]');
 
     navLinks.forEach((link) => {
