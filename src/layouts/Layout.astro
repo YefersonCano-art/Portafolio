@@ -4,7 +4,7 @@ import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -19,6 +19,38 @@ import "../styles/global.css";
     </main>
   </body>
 </html>
+
+<script>
+  import Lenis from "@studio-freight/lenis";
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  // Registrar ScrollTrigger
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 🎯 Inicializar Lenis para smooth scroll con inercia
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  });
+
+  // 🔄 Sincronizar Lenis con GSAP ScrollTrigger
+  lenis.on("scroll", ScrollTrigger.update);
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+
+  gsap.ticker.lagSmoothing(0);
+
+  // 🎯 Hacer que Lenis esté disponible globalmente para el Header
+  (window as any).lenis = lenis;
+
+  // 🧹 Limpiar al salir
+  window.addEventListener("beforeunload", () => {
+    lenis.destroy();
+  });
+</script>
 
 <style is:global>
   html {

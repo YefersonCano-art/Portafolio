@@ -65,4 +65,37 @@
       applyTheme((e.target as HTMLInputElement).checked);
     });
   }
+
+  // 🎯 Smooth Scroll con Lenis
+  document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const href = link.getAttribute("href");
+
+        if (href) {
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            // ✨ Usar Lenis para scroll suave con inercia
+            const lenis = (window as any).lenis;
+            if (lenis) {
+              const headerOffset = 80; // Altura del header
+              const elementPosition = targetElement.offsetTop;
+              const offsetPosition = elementPosition - headerOffset;
+
+              lenis.scrollTo(offsetPosition, {
+                duration: 1.2,
+                easing: (t: number) =>
+                  Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+              });
+            }
+          }
+        }
+      });
+    });
+  });
 </script>
