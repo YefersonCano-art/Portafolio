@@ -12,21 +12,27 @@
     >
 
     <div class="flex items-center gap-x-10">
-      <nav class="flex flex-row space-x-6">
+      <nav class="flex flex-row space-x-6 relative">
+        <!-- 🎯 Indicador animado -->
+        <span
+          id="nav-indicator"
+          class="absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-300 ease-out"
+          style="width: 0px; opacity: 0;"></span>
+
         <a
           class="relative text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
           href="#hero"
-          >Inicio <span
-            class="absolute bottom-0 left-0 h-[2px] w-full bg-primary"
-            style="opacity: 1;"></span></a
+          data-section="hero">Inicio</a
         >
         <a
           class="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-          href="#about">Sobre Mí</a
+          href="#about"
+          data-section="about">Sobre Mí</a
         >
         <a
           class="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-          href="#skills">Habilidades</a
+          href="#skills"
+          data-section="skills">Habilidades</a
         >
       </nav>
 
@@ -79,6 +85,11 @@
 </style>
 
 <script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
   const isDark = true; // Valor predeterminado del tema oscuro
 
   function applyTheme(isDark: boolean) {
@@ -126,9 +137,49 @@
       handleScroll();
     }
 
-    const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+    // 🎯 Indicador animado del nav
+    const navLinks = document.querySelectorAll("header nav a[data-section]");
+    const indicator = document.getElementById("nav-indicator");
+    let currentActiveLink: HTMLElement | null = null;
 
+    // Función para mover el indicador bajo un enlace
+    const moveIndicator = (link: HTMLElement) => {
+      if (!indicator) return;
+
+      const linkRect = link.getBoundingClientRect();
+      const navRect = link.parentElement?.getBoundingClientRect();
+
+      if (navRect) {
+        const leftPosition = linkRect.left - navRect.left;
+
+        gsap.to(indicator, {
+          x: leftPosition,
+          width: linkRect.width,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      }
+
+      currentActiveLink = link;
+    };
+
+    // Crear ScrollTriggers para cada sección
     navLinks.forEach((link) => {
+      const sectionId = link.getAttribute("data-section");
+      const section = document.getElementById(sectionId!);
+
+      if (section) {
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top 30%",
+          end: "bottom 30%",
+          onEnter: () => moveIndicator(link as HTMLElement),
+          onEnterBack: () => moveIndicator(link as HTMLElement),
+        });
+      }
+
+      // Click en los enlaces
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const href = link.getAttribute("href");
@@ -138,10 +189,13 @@
           const targetElement = document.getElementById(targetId);
 
           if (targetElement) {
+            // Mover el indicador inmediatamente
+            moveIndicator(link as HTMLElement);
+
             // ✨ Usar Lenis para scroll suave con inercia
             const lenis = (window as any).lenis;
             if (lenis) {
-              const headerOffset = 80; // Altura del header
+              const headerOffset = 80;
               const elementPosition = targetElement.offsetTop;
               const offsetPosition = elementPosition - headerOffset;
 
@@ -155,5 +209,10 @@
         }
       });
     });
+
+    // Inicializar con la primera sección
+    if (navLinks.length > 0) {
+      moveIndicator(navLinks[0] as HTMLElement);
+    }
   });
 </script>
