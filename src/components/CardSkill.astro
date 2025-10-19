@@ -1,25 +1,40 @@
 ---
 import type { Skill } from "../data/skills";
+import * as Icons from "./icons";
 
 const { skill } = Astro.props;
 interface Props {
   skill: Skill;
 }
+
+// Obtener el componente del icono dinámicamente
+const IconComponent = Icons[skill.icon as keyof typeof Icons];
 ---
 
 <div
   class="skill-card group relative overflow-hidden rounded-lg border border-input bg-background p-6 transition-all hover:shadow-lg hover:scale-101"
 >
-  <div class="flex items-center gap-3 mb-4">
-    <span class="text-3xl">{skill.icon}</span>
-    <h3 class="text-xl font-semibold">{skill.name}</h3>
+  <div class="flex items-center gap-3 mb-4 p-4">
+    <span class="text-3xl flex items-center justify-center">
+      {
+        IconComponent ? (
+          <IconComponent
+            class={"h-8 w-8  md:h-10 md:w-10"}
+            color={skill.color}
+          />
+        ) : (
+          skill.icon
+        )
+      }
+    </span>
+    <h3 class="text-xl font-light">{skill.name}</h3>
   </div>
 
   <!-- Badges -->
   <div class="flex flex-wrap gap-2">
     {
       skill.badges.map((badge: string) => (
-        <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-md text-sm bg-primary/10 text-primary border border-primary/50">
           {badge}
         </span>
       ))

@@ -27,7 +27,7 @@ import {
             {
               tabButtons.map((tab) => (
                 <button
-                  class={`tab-button ${tab === "frontend" ? "active" : ""} flex items-center justify-center whitespace-nowrap text-muted-foreground  text-sm font-medium transition-all  border border-muted bg-background hover:bg-accent hover:text-accent-foreground w-full md:w-auto h-10 md:px-10 md:py-6 capitalize cursor-pointer relative   `}
+                  class={`tab-button ${tab === "frontend" ? "active" : ""} flex items-center justify-center whitespace-nowrap text-muted-foreground  text-base font-medium transition-all  border border-muted bg-background hover:bg-accent hover:text-accent-foreground w-full md:w-auto h-10 md:px-10 py-6 capitalize cursor-pointer relative   `}
                   data-tab={tab}
                 >
                   {tab}
@@ -40,21 +40,27 @@ import {
           <div class="tab-content">
             <!-- Frontend Panel -->
             <div class="tab-panel active" id="frontend">
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:gap-4"
+              >
                 {frontendSkills.map((skill) => <CardSkill skill={skill} />)}
               </div>
             </div>
 
             <!-- Backend Panel -->
             <div class="tab-panel" id="backend">
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:gap-4"
+              >
                 {backendSkills.map((skill) => <CardSkill skill={skill} />)}
               </div>
             </div>
 
             <!-- Herramientas Panel -->
             <div class="tab-panel" id="herramientas">
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:gap-4"
+              >
                 {herramientas.map((skill) => <CardSkill skill={skill} />)}
               </div>
             </div>
