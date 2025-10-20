@@ -162,16 +162,12 @@ portafolio/
 
 El proyecto está configurado para despliegue en **GitHub Pages**:
 
-- **Site URL**: https://YefersonCano-art.github.io
-- **Base Path**: /Portafolio
-
 El sitio se despliega automáticamente al hacer push a la rama principal.
 
 ## 📞 Contacto
 
 - **GitHub**: [@YefersonCano-art](https://github.com/YefersonCano-art)
-- **LinkedIn**: [Tu LinkedIn](https://linkedin.com/in/tu-perfil)
-- **Email**: tu-email@ejemplo.com
+- **LinkedIn**: [LinkedIn Yeferson Cano](https://www.linkedin.com/in/jefferson-david-cano-hernandez/)
 
 ## 📄 Licencia
 
