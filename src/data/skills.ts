@@ -34,6 +34,12 @@ export const frontendSkills: Skill[] = [
 ];
 
 export const backendSkills: Skill[] = [
+   {
+    name: "Databases",
+    icon: "PostgreSQLIcon",
+    color: "#47A248",
+    badges: ["MySQL", "PostgreSQL", "MongoDB", "SQLite"],
+  },
   {
     name: "Node.js",
     icon: "NodeIcon",
@@ -55,12 +61,7 @@ export const backendSkills: Skill[] = [
 ];
 
 export const herramientas: Skill[] = [
-  {
-    name: "Databases",
-    icon: "PostgreSQLIcon",
-    color: "#47A248",
-    badges: ["MySQL", "PostgreSQL", "MongoDB", "SQLite"],
-  },
+ 
   {
     name: "Development Tools",
     icon: "DevelopmentIcon",
