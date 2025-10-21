@@ -13,4 +13,5 @@ export { default as PostgreSQLIcon } from './DatabasesIcon.astro';
 export { default as DevelopmentIcon } from './DevelopmentIcons.astro';
 export { default as ActionsIcon } from './ActionsIcon.astro';
 export { default as FigmaIcon } from './FigmaIcon.astro';
+export { default as GitHubIcon2 } from './GitHubIcon2.astro';
 

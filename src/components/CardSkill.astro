@@ -19,7 +19,9 @@ const IconComponent = Icons[skill.icon as keyof typeof Icons];
       {
         IconComponent ? (
           <IconComponent
-            class={"h-8 w-8  md:h-10 md:w-10"}
+            class={
+              "h-8 w-8  md:h-10 md:w-10 md:saturate-0 md:group-hover:saturate-100 transition-colors )"
+            }
             color={skill.color}
           />
         ) : (

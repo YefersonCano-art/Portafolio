@@ -68,6 +68,13 @@ export const herramientas: Skill[] = [
     badges: ["Git", "VS Code", "pnpm", "Vite", "Testing"],
   },
   {
+    name: "GitHub",
+    icon: "GitHubIcon2",
+    color: "var(--color-muted-foreground)",
+    badges: ["Version Control", "Collaboration", "Pull Requests", "Issues"],
+  },
+
+  {
     name: "GitHub Actions",
     icon: "ActionsIcon",
     color: "#2088FF",
