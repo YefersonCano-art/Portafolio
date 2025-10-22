@@ -258,28 +258,29 @@
     }
 
     // 🎯 Indicador animado del nav (Desktop)
-    const navLinks = document.querySelectorAll("header nav a[data-section]");
+    const desktopNav = document.querySelector(".hidden.md\\:flex nav");
+    const navLinks = desktopNav
+      ? desktopNav.querySelectorAll("a[data-section]")
+      : [];
     const indicator = document.getElementById("nav-indicator");
     let currentActiveLink: HTMLElement | null = null;
 
     // Función para mover el indicador bajo un enlace
     const moveIndicator = (link: HTMLElement) => {
-      if (!indicator) return;
+      if (!indicator || !desktopNav) return;
 
       const linkRect = link.getBoundingClientRect();
-      const navRect = link.parentElement?.getBoundingClientRect();
+      const navRect = desktopNav.getBoundingClientRect();
 
-      if (navRect) {
-        const leftPosition = linkRect.left - navRect.left;
+      const leftPosition = linkRect.left - navRect.left;
 
-        gsap.to(indicator, {
-          x: leftPosition,
-          width: linkRect.width,
-          opacity: 1,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      }
+      gsap.to(indicator, {
+        x: leftPosition,
+        width: linkRect.width,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
 
       currentActiveLink = link;
     };
@@ -303,7 +304,7 @@
       if (section) {
         ScrollTrigger.create({
           trigger: section,
-          start: "top 30%",
+          start: "top 20%",
           end: "bottom 30%",
           onEnter: () => {
             moveIndicator(link as HTMLElement);
