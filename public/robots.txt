@@ -1,0 +1,7 @@
+# robots.txt para Portafolio de Yeferson Cano
+
+User-agent: *
+Allow: /
+
+# Sitemap
+# Sitemap: https://yefersoncano.me/sitemap.xml
