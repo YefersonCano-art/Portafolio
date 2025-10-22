@@ -9,7 +9,8 @@
   <div class="container flex h-20 items-center justify-between px-4">
     <a href="/" class="text-2xl text-muted-foreground font-extrabold">YC</a>
 
-    <div class="flex items-center gap-x-10">
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center gap-x-10">
       <nav class="flex flex-row space-x-6 relative">
         <!-- 🎯 Indicador animado -->
         <span
@@ -43,17 +44,71 @@
           data-section="projects">Proyectos</a
         >
       </nav>
-
-      <!-- 🌓 Toggle Dark Mode -->
     </div>
-    <label class="flex items-center gap-2 cursor-pointer">
-      <input type="checkbox" id="theme-toggle" class="sr-only peer" />
-      <div
-        class="relative w-9 h-5 bg-foreground peer-focus:outline-none peer-focus:ring-ring rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"
+
+    <!-- Right Section: Theme Toggle + Mobile Menu Button -->
+    <div class="flex items-center gap-4">
+      <!-- 🌓 Toggle Dark Mode -->
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input type="checkbox" id="theme-toggle" class="sr-only peer" />
+        <div
+          class="relative w-9 h-5 bg-foreground peer-focus:outline-none peer-focus:ring-ring rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"
+        >
+        </div>
+      </label>
+
+      <!-- 🍔 Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="md:hidden flex flex-col gap-1.5 w-8 h-8 items-center justify-center relative z-50"
+        aria-label="Toggle menu"
       >
-      </div>
-    </label>
+        <span
+          class="block w-6 h-0.5 bg-foreground transition-all duration-300 ease-out"
+          id="hamburger-line-1"></span>
+        <span
+          class="block w-6 h-0.5 bg-foreground transition-all duration-300 ease-out"
+          id="hamburger-line-2"></span>
+        <span
+          class="block w-6 h-0.5 bg-foreground transition-all duration-300 ease-out"
+          id="hamburger-line-3"></span>
+      </button>
+    </div>
   </div>
+
+  <!-- 📱 Mobile Menu -->
+  <nav
+    id="mobile-menu"
+    class="md:hidden fixed top-20 left-0 right-0 bg-background/95 backdrop-blur-lg shadow-lg opacity-0 invisible transition-all duration-300 ease-out translate-y-[-10px]"
+  >
+    <div class="container px-4 py-6 flex flex-col space-y-4">
+      <a
+        class="mobile-nav-link text-lg font-medium transition-colors hover:text-primary text-muted-foreground py-2 border-b border-border/40"
+        href="#hero"
+        data-section="hero">Inicio</a
+      >
+      <a
+        class="mobile-nav-link text-lg font-medium transition-colors hover:text-primary text-muted-foreground py-2 border-b border-border/40"
+        href="#about"
+        data-section="about">Sobre Mí</a
+      >
+      <a
+        class="mobile-nav-link text-lg font-medium transition-colors hover:text-primary text-muted-foreground py-2 border-b border-border/40"
+        href="#skills"
+        data-section="skills">Habilidades</a
+      >
+      <a
+        class="mobile-nav-link text-lg font-medium transition-colors hover:text-primary text-muted-foreground py-2 border-b border-border/40"
+        href="#education"
+        data-section="education">Educación</a
+      >
+      <a
+        class="mobile-nav-link text-lg font-medium transition-colors hover:text-primary text-muted-foreground py-2"
+        href="#projects"
+        data-section="projects">Proyectos</a
+      >
+    </div>
+  </nav>
 </header>
 
 <style>
@@ -90,6 +145,31 @@
       0 4px 6px -1px rgba(0, 0, 0, 0.3),
       0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
   }
+
+  /* 🍔 Hamburger Menu Animation */
+  #mobile-menu-button.active #hamburger-line-1 {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  #mobile-menu-button.active #hamburger-line-2 {
+    opacity: 0;
+  }
+
+  #mobile-menu-button.active #hamburger-line-3 {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* 📱 Mobile Menu Visible State */
+  #mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Active link styling for mobile */
+  .mobile-nav-link.active {
+    color: hsl(var(--primary));
+  }
 </style>
 
 <script>
@@ -125,6 +205,9 @@
   // 🎯 Smooth Scroll con Lenis
   document.addEventListener("DOMContentLoaded", () => {
     const header = document.getElementById("main-header");
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
 
     // ✨ Efecto del header al hacer scroll (versión simple)
     if (header) {
@@ -145,7 +228,36 @@
       handleScroll();
     }
 
-    // 🎯 Indicador animado del nav
+    // 🍔 Toggle Mobile Menu
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenuButton.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+      });
+
+      // Cerrar menú al hacer click en un link
+      mobileNavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenuButton.classList.remove("active");
+          mobileMenu.classList.remove("active");
+        });
+      });
+
+      // Cerrar menú al hacer click fuera
+      document.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement;
+        if (
+          !mobileMenu.contains(target) &&
+          !mobileMenuButton.contains(target) &&
+          mobileMenu.classList.contains("active")
+        ) {
+          mobileMenuButton.classList.remove("active");
+          mobileMenu.classList.remove("active");
+        }
+      });
+    }
+
+    // 🎯 Indicador animado del nav (Desktop)
     const navLinks = document.querySelectorAll("header nav a[data-section]");
     const indicator = document.getElementById("nav-indicator");
     let currentActiveLink: HTMLElement | null = null;
@@ -172,6 +284,17 @@
       currentActiveLink = link;
     };
 
+    // Función para actualizar active en mobile
+    const updateMobileActive = (sectionId: string) => {
+      mobileNavLinks.forEach((link) => {
+        if (link.getAttribute("data-section") === sectionId) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    };
+
     // Crear ScrollTriggers para cada sección
     navLinks.forEach((link) => {
       const sectionId = link.getAttribute("data-section");
@@ -182,12 +305,18 @@
           trigger: section,
           start: "top 30%",
           end: "bottom 30%",
-          onEnter: () => moveIndicator(link as HTMLElement),
-          onEnterBack: () => moveIndicator(link as HTMLElement),
+          onEnter: () => {
+            moveIndicator(link as HTMLElement);
+            updateMobileActive(sectionId!);
+          },
+          onEnterBack: () => {
+            moveIndicator(link as HTMLElement);
+            updateMobileActive(sectionId!);
+          },
         });
       }
 
-      // Click en los enlaces
+      // Click en los enlaces (Desktop)
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const href = link.getAttribute("href");
@@ -218,9 +347,40 @@
       });
     });
 
+    // Click en los enlaces mobile
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const href = link.getAttribute("href");
+
+        if (href) {
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            const lenis = (window as any).lenis;
+            if (lenis) {
+              const headerOffset = 80;
+              const elementPosition = targetElement.offsetTop;
+              const offsetPosition = elementPosition - headerOffset;
+
+              lenis.scrollTo(offsetPosition, {
+                duration: 1.2,
+                easing: (t: number) =>
+                  Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+              });
+            }
+          }
+        }
+      });
+    });
+
     // Inicializar con la primera sección
     if (navLinks.length > 0) {
       moveIndicator(navLinks[0] as HTMLElement);
+    }
+    if (mobileNavLinks.length > 0) {
+      mobileNavLinks[0].classList.add("active");
     }
   });
 </script>
