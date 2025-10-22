@@ -1,0 +1,135 @@
+---
+import GitHubIcon from "./icons/GitHubIcon.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+const { name, description, tags, imagen, github, demo, left = false } = Astro.props;
+interface Props {
+  name: string;
+  description: string;
+  tags: string[];
+  imagen: ImageMetadata;
+  github?: string;
+  demo?: string;
+  left?: boolean;
+}
+---
+
+<div
+  class="rounded-lg border bg-card text-card-foreground group relative overflow-hidden bg-gradient-to-br from-background to-background p-1 shadow-xl border-input"
+>
+  <div class="relative rounded-lg bg-card p-6">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none"
+    >
+    </div>
+    <div
+      class="relative flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8"
+    >
+      {
+                left  ? (
+        <div class="lg:w-1/2">
+        <div class="flex items-start justify-between">
+          <h3 class="text-xl font-medium tracking-tight">
+            {name}
+          </h3>
+        </div>
+        <div class="mt-2 text-base text-muted-foreground">
+          <p>{description}</p>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/10 text-primary hover:bg-primary/20">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div class="mt-6 flex gap-3">
+          {demo && (
+            <a 
+              href={demo} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" x2="21" y1="14" y2="3"></line>
+              </svg>
+              Preview
+            </a>
+          )}
+          {github && (
+            <a 
+              href={github} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors font-medium text-sm"
+            >
+              <GitHubIcon />
+              Ver Código
+            </a>
+          )}
+        </div>
+        </div>
+        <div class="lg:w-1/2">
+          <div class="overflow-hidden rounded-lg border border-border">
+            <Image src={imagen} alt={name} class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>)
+      :
+        ( <div class="lg:w-1/2">
+          <div class="overflow-hidden rounded-lg border border-border">
+            <Image src={imagen} alt={name} class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+          </div>
+        </div>
+       <div class="lg:w-1/2">
+        <div class="flex items-start justify-between">
+          <h3 class="text-xl font-medium tracking-tight">
+            {name}
+          </h3>
+        </div>
+        <div class="mt-2 text-base text-muted-foreground">
+          <p>{description}</p>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary/10 text-primary hover:bg-primary/20">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div class="mt-6 flex gap-3">
+          {demo && (
+            <a 
+              href={demo} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" x2="21" y1="14" y2="3"></line>
+              </svg>
+              Preview
+            </a>
+          )}
+          {github && (
+            <a 
+              href={github} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors font-medium text-sm"
+            >
+              <GitHubIcon />
+              Ver Código
+            </a>
+          )}
+        </div>
+        </div>)
+      }
+    </div>
+  </div>
+</div>
