@@ -2,6 +2,7 @@ import type { ImageMetadata } from "astro";
 
 
 import capturaTrapiches from "../assets/projectsImg/CapturaTrapiches.webp";
+import capturaGuauPetStore from "../assets/projectsImg/capturaGuauPetStore.png";
 
 export interface Project {
   name: string;
@@ -26,15 +27,14 @@ export const featuredProjects: Project[] = [
 
 // Proyectos de aprendizaje y práctica
 export const learningProjects: Project[] = [
-  // Aquí puedes agregar tus proyectos de aprendizaje
-  // Ejemplo:
-  // {
-  //   name: "Todo App",
-  //   description: "Aplicación de tareas con React y TypeScript para practicar hooks y gestión de estado.",
-  //   tags: ["React", "TypeScript", "Hooks"],
-  //   imagen: capturaTrapiches, // Reemplazar con la imagen correcta
-  //   github: "https://github.com/tu-usuario/todo-app",
-  // },
+ {
+  name: "Guau Pet Store",
+  description: "E-commerce completo para tienda de productos de mascotas. Incluye catálogo de productos con sistema de grid responsivo avanzado, sección de blog con artículos informativos, página de nosotros y formulario de contacto. Diseño moderno con gradientes coloridos, animaciones suaves y optimización mobile-first con múltiples breakpoints.",
+  tags: ["HTML5", "CSS3", "Responsive Design", "Font Awesome", "Grid Layout", "Flexbox"],
+  imagen: capturaGuauPetStore,
+  github: "https://github.com/YefersonCano-art/proyectos-portafolio",
+  demo: "https://yefersoncano-art.github.io/proyectos-portafolio/ecommerce-pets/"
+}
 ];
 
 export const tabButtons = ["proyectos destacados", "proyectos de aprendizaje"] as const;
