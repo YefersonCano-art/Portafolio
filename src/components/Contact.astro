@@ -1,0 +1,79 @@
+---
+import GitHubIcon from "./icons/GitHubIcon.astro";
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
+import MailIcon from "./icons/MailIcon.astro";
+---
+
+<section
+  id="contact"
+  class="flex min-h-screen w-full items-center justify-center py-24"
+>
+  <div class="container mx-auto px-4">
+    <div class="mx-auto max-w-4xl">
+      <!-- Título Principal -->
+      <div class="text-center" style="opacity: 1; transform: none;">
+        <h2 class="text-3xl font-medium tracking-tight sm:text-4xl">
+          Conectemos
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+          Si tienes un proyecto en mente o deseas establecer contacto, estaré
+          encantado de atenderte.
+        </p>
+      </div>
+
+      <!-- Contenido Principal -->
+      <div class="mt-16 flex flex-col items-center justify-center">
+        <!-- Enlaces Sociales -->
+        <div class="w-full max-w-2xl" style="opacity: 1; transform: none;">
+          <div class="text-center">
+            <h3 class="text-2xl font-medium mb-3">Encuéntrame en Línea</h3>
+            <p class="text-muted-foreground mb-8">
+              Conecta conmigo a través de cualquiera de estas plataformas
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+              <!-- GitHub -->
+              <a
+                href="https://github.com/YefersonCano-art"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-lg bg-primary/10 px-6 py-4 text-primary transition-all hover:bg-primary/20 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                aria-label="Visita mi perfil de GitHub"
+                tabindex="0"
+              >
+                <GitHubIcon class="h-6 w-6" />
+                <span class="text-base font-medium">GitHub</span>
+              </a>
+
+              <!-- LinkedIn -->
+              <a
+                href="https://www.linkedin.com/in/jefferson-david-cano-hernandez/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-lg bg-primary/10 px-6 py-4 text-primary transition-all hover:bg-primary/20 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                aria-label="Visita mi perfil de LinkedIn"
+                tabindex="0"
+              >
+                <LinkedInIcon class="h-6 w-6" />
+                <span class="text-base font-medium">LinkedIn</span>
+              </a>
+
+              <!-- Email -->
+              <a
+                href="mailto:canocs3@live.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-lg bg-primary/10 px-6 py-4 text-primary transition-all hover:bg-primary/20 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                aria-label="Envíame un correo electrónico"
+                tabindex="0"
+              >
+                <MailIcon class="h-6 w-6" />
+                <span class="text-base font-medium">Email</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
