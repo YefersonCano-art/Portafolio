@@ -4,7 +4,7 @@ import { GitHubIcon, LinkedInIcon, MailIcon } from "./icons";
 
 <section
   id="hero"
-  class="relative flex pt-24 min-h-screen w-full items-center justify-center overflow-hidden mb-[-100px] md:mb-[-200px]"
+  class="relative flex min-h-screen w-full items-center justify-center overflow-hidden"
 >
   <div
     class="absolute -z-20 inset-0 bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black,transparent)]"
@@ -91,5 +91,28 @@ import { GitHubIcon, LinkedInIcon, MailIcon } from "./icons";
         </div>
       </div>
     </div>
+  </div>
+  <!-- Indicador informativo: icono estático ahora con animación (no es un enlace) -->
+  <div
+    role="img"
+    aria-label="Indicador: desplazar hacia abajo"
+    tabindex="-1"
+    class="hidden absolute bottom-16 left-1/2 -translate-x-1/2 lg:flex items-center justify-center w-10 h-10 rounded-full shadow-md animate-float"
+    style="background:var(--color-card); color:var(--color-muted-foreground);"
+  >
+    <!-- simple chevron down SVG -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      class="w-5 h-5"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M19 9l-7 7-7-7"></path>
+    </svg>
   </div>
 </section>
