@@ -105,24 +105,6 @@
   animation: gradient 30s ease infinite;
 }
 
-/* Animación flotante ligera (usa transform para mejor rendimiento) */
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.animate-float {
-  animation: float 2.2s ease-in-out infinite;
-  will-change: transform;
-}
-
 /* Respetar preferencia de reducir movimiento */
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
