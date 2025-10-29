@@ -1,5 +1,5 @@
 ---
-
+import { SunIcon, MoonIcon } from "./icons";
 ---
 
 <header
@@ -49,12 +49,26 @@
     <!-- Right Section: Theme Toggle + Mobile Menu Button -->
     <div class="flex items-center gap-4">
       <!-- 🌓 Toggle Dark Mode -->
-      <label class="flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" id="theme-toggle" class="sr-only peer" />
-        <div
-          class="relative w-9 h-5 bg-foreground peer-focus:outline-none peer-focus:ring-ring rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"
-        >
-        </div>
+      <label class="relative flex items-center cursor-pointer w-6 h-6">
+        <!-- input antes de los iconos para que `peer-checked` afecte a los siblings posteriores -->
+        <input
+          type="checkbox"
+          id="theme-toggle"
+          class="sr-only peer"
+          aria-label="Toggle theme"
+        />
+
+        <!-- Sun: oculto cuando checked (modo oscuro) -->
+        <SunIcon
+          class="absolute inset-0 w-5 h-5 opacity-0 scale-75 rotate-90 peer-checked:opacity-100 peer-checked:scale-100 peer-checked:rotate-0 text-muted-foreground transition-all duration-300"
+          id="sun"
+        />
+
+        <!-- Moon: visible cuando checked (modo oscuro) -->
+        <MoonIcon
+          class="absolute inset-0 w-5 h-5 opacity-100 scale-100 rotate-0 peer-checked:opacity-0 peer-checked:scale-75 peer-checked:-rotate-90 text-muted-foreground transition-all duration-300"
+          id="moon"
+        />
       </label>
 
       <!-- 🍔 Mobile Menu Button -->
