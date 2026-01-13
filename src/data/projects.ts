@@ -3,6 +3,7 @@ import type { ImageMetadata } from "astro";
 
 import capturaTrapiches from "../assets/projectsImg/CapturaTrapiches.webp";
 import capturaGuauPetStore from "../assets/projectsImg/capturaGuauPetStore.png";
+import capturaMiniSistemaPERN from "../assets/projectsImg/CapturaPERN.webp";
 
 export interface Project {
   name: string;
@@ -34,6 +35,14 @@ export const learningProjects: Project[] = [
   imagen: capturaGuauPetStore,
   github: "https://github.com/YefersonCano-art/proyectos-portafolio",
   demo: "https://yefersoncano-art.github.io/proyectos-portafolio/ecommerce-pets/"
+},
+{
+  name: "Mini Sistema PERN",
+  description: "Aplicación Full Stack para administración de productos con stack PERN (PostgreSQL, Express, React, Node.js). Sistema CRUD completo con validación de datos, filtrado por precio, vista detallada de productos y manejo de estados de carga. Backend API REST desplegado en Render con Sequelize ORM y frontend en React con TypeScript y Tailwind CSS.",
+  tags: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Sequelize", "Tailwind CSS", "Vite"],
+  imagen: capturaMiniSistemaPERN,
+  github: "https://github.com/YefersonCano-art/backend---Mini-sistema-PERN",
+  demo: "https://frontend-mini-sistema-pern.vercel.app/"
 }
 ];
 
