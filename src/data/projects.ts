@@ -4,6 +4,7 @@ import type { ImageMetadata } from "astro";
 import capturaTrapiches from "../assets/projectsImg/CapturaTrapiches.webp";
 import capturaGuauPetStore from "../assets/projectsImg/capturaGuauPetStore.png";
 import capturaMiniSistemaPERN from "../assets/projectsImg/CapturaPERN.webp";
+import capturaportafolio from "../assets/projectsImg/capturaportafolio.webp";
 
 export interface Project {
   name: string;
@@ -16,6 +17,14 @@ export interface Project {
 
 // Proyectos destacados profesionales
 export const featuredProjects: Project[] = [
+  {
+    name: "Portafolio Personal",
+    description: "Portafolio web moderno y minimalista desarrollado con Astro. Incluye secciones de proyectos, habilidades, experiencia y educación con tema claro/oscuro. Implementa animaciones suaves con GSAP y Lenis para scroll fluido. Desplegado automáticamente con GitHub Actions en dominio personalizado.",
+    tags: ["Astro", "TypeScript", "Tailwind CSS", "GSAP", "GitHub Actions"],
+    imagen: capturaportafolio,
+    github: "https://github.com/YefersonCano-art/Portafolio",
+    demo: "https://yefersoncano.me/"
+  },
   {
     name: "Trapiches Don Pedro",
     description: "Landing page para fábrica de trapiches artesanales en madera. Diseño limpio y responsive con integración de WhatsApp para contacto directo. Proyecto enfocado en destacar la tradición y autenticidad de los productos artesanales de la empresa Don Pedro.",
