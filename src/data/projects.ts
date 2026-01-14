@@ -4,7 +4,7 @@ import type { ImageMetadata } from "astro";
 import capturaTrapiches from "../assets/projectsImg/CapturaTrapiches.webp";
 import capturaGuauPetStore from "../assets/projectsImg/capturaGuauPetStore.png";
 import capturaMiniSistemaPERN from "../assets/projectsImg/CapturaPERN.webp";
-import capturaportafolio from "../assets/projectsImg/capturaportafolio.webp";
+import capturaportafolio from "../assets/projectsImg/CapturaPortafolio.webp";
 
 export interface Project {
   name: string;
